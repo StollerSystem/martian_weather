@@ -8,7 +8,6 @@ import MartianWeather from './js/martian_weather.js';
 
 
 $(document).ready(function(){
-
   let promise = MartianWeather.getWeather();
   promise.then(function(response) {
     const body = JSON.parse(response);
@@ -17,8 +16,31 @@ $(document).ready(function(){
     $(".temperature").text(`The average temperature is ${body[sol].AT.av}`);
     $(".windSpeed").text(`The current average windspeed is ${body[sol].HWS.av}`);
     $(".pressure").text(`The current average pressure is ${body[sol].PRE.av}`);    
-  }, function(error) {
+  },function(error) {
     $(".showErrors").text(`There was an error processing your request: ${error}`);
   });
+
+  $(".btn").click(function(event) {
+    event.preventDefault();
+    $(".showImages").html("")
+    const rover = $("#rover").val();
+    const camera = $("#camera").val();
+    const date = $("#date").val();
+    let promise = MartianWeather.getImage(rover,camera,date);
+    promise.then(function(response){
+      const body = JSON.parse(response);
+      body.photos.forEach(function(elem){
+        $(".showImages").append(`<img src=${elem.img_src}>`);
+      });       
+      
+    }, function(error) {
+      $(".showErrors").text(`There was an error processing your request: ${error}`);
+    });
+  });
+
+
+
+
+
 
 });

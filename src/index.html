@@ -22,6 +22,33 @@
     <div class="pressure"></div>
     <!-- Error -->
     <div class="showErrors"></div>
+
+    <!-- Image -->
+    <form id="imageForm">
+      <h6>Get a Mars Rover Image!</h6>
+      <div class="form-group">
+        <label for="rover">Select a Rover:</label>
+        <select name="rover" id="rover">
+          <option value="curiosity">Curiosity</option>
+          <option value="opportunity">Opportunity</option>
+          <option value="spirit">Spirit</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="camera">Select a Camera:</label>
+        <select name="camera" id="camera">
+          <option value="fhaz">Front Hazard Avoidance Camera</option>
+          <option value="rhaz">Rear Hazard Avoidance Camera</option>
+          <option value="navcam">Navigation Camera</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="date">Select a date to get your image:</label>
+        <input type="date" id="date" name="date" min="2004-01-05">
+      </div>
+      <button class="btn btn-danger">Get Images!</button>
+    </form>
+    <div class="showImages"></div>
   </div>
 </body>
 </html>
