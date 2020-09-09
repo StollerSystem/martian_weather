@@ -22,25 +22,30 @@ $(document).ready(function(){
 
   $(".btn").click(function(event) {
     event.preventDefault();
-    $(".showImages").html("")
+    $(".showImages").html("");
     const rover = $("#rover").val();
     const camera = $("#camera").val();
     const date = $("#date").val();
     let promise = MartianWeather.getImage(rover,camera,date);
     promise.then(function(response){
       const body = JSON.parse(response);
-      body.photos.forEach(function(elem){
-        $(".showImages").append(`<img src=${elem.img_src}>`);
-      });       
-      
-    }, function(error) {
-      $(".showErrors").text(`There was an error processing your request: ${error}`);
-    });
-  });
-
-
-
-
-
-
+      console.log(body.photos)
+      if (body.photos.length === 0){
+        $(".showImages").text("Sorry no images for that rover/camera on that date!")    
+      } else {
+          body.photos.forEach(function(elem){
+            console.log(elem.img_src);
+            $(".showImages").append(`<img src=${elem.img_src}>`);
+          });
+      }
+    },  function(error) {
+          $(".showErrors").text(`There was an error processing your request: ${error}`);
+        });
+  }); 
 });
+
+
+
+
+
+

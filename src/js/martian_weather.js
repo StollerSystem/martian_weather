@@ -20,6 +20,7 @@ export default class MartianWeather {
       const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?earth_date=${date}&camera=${image}&api_key=${process.env.API_KEY}`;
       request.onload = function() {
         if (this.status === 200) {
+          console.log(request.response)
           resolve(request.response);
         } else {
           reject(request.response);
