@@ -36,19 +36,19 @@ $(document).ready(function(){
       if (body.photos.length === 0){
         $(".showImages").text("Sorry no images for that rover/camera on that date!");  
       } else {
-        // $(".showImages").append(`
-        // <div class="carousel-item active">
-        //   <img class="d-block w-100" src='${body.photos[0].img_src}' alt="Slide 1">
-        // </div>`); 
-        // for (let i=1; i<body.photos.length; i++){
-        //   $(".showImages").append(`
-        //     <div class="carousel-item">
-        //       <img class="d-block w-100" src='${body.photo[i].img_src}' alt="Slide ${[i+1]}">
-        //     </div>`);
-        // }
-        body.photos.forEach(function(elem){          
-          $(".showImages").append(`<img src=${elem.img_src}>`);
-        });
+        $(".showImages").append(`
+        <div class="carousel-item active">
+          <img class="d-block w-100" src='${body.photos[0].img_src}' alt="Slide 1">
+        </div>`); 
+        for (let i=1; i<body.photos.length; i++){
+          $(".showImages").append(`
+            <div class="carousel-item">
+              <img class="d-block w-100" src='${body.photos[i].img_src}' alt="Slide ${i+1}">
+            </div>`);
+        }
+        // body.photos.forEach(function(elem){          
+        //   $(".showImages").append(`<img src=${elem.img_src}>`);
+        // });
       }
     },  function(error) {
         $(".showErrors").text(`There was an error processing your request: ${error}`);
